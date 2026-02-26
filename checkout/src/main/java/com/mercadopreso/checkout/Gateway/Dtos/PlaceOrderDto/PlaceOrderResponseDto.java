@@ -1,4 +1,4 @@
-package com.mercadopreso.checkout.Gateway.Dtos;
+package com.mercadopreso.checkout.Gateway.Dtos.PlaceOrderDto;
 
 
 import com.mercadopreso.checkout.Domains.Order;
