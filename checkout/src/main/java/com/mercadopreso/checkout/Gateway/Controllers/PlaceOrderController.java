@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/fazerPedido")
+@RequestMapping("/place-order")
 public class PlaceOrderController {
     private final PlaceOrderService placeOrderService;
 
