@@ -43,6 +43,6 @@ public class ItemServiceImpl implements ItemService {
         return ids.stream()
                 .filter(ITEM_STORE::containsKey)
                 .map(ITEM_STORE::get)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
     }
 }
