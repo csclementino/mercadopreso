@@ -5,12 +5,14 @@ import com.mercadopreso.payment.domains.enums.Gateway;
 import com.mercadopreso.payment.domains.enums.Status;
 import com.mercadopreso.payment.domains.enums.Type;
 
+import java.math.BigDecimal;
+
 public record PaymentResponseDto(
         Type type,
         String hashId,
         Gateway gateway,
-        Status status,
-        Double amount
+        BigDecimal amount,
+        Status status
 ) {
 
     public static PaymentResponseDto fromPayment(Payment payment) {
@@ -18,8 +20,9 @@ public record PaymentResponseDto(
                 payment.getType(),
                 payment.getHashId(),
                 payment.getGateway(),
-                payment.getStatus(),
-                payment.getAmount()
+                payment.getAmount(),
+                payment.getStatus()
+
         );
     }
 }

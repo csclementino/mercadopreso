@@ -5,6 +5,8 @@ import com.mercadopreso.payment.domains.enums.Status;
 import com.mercadopreso.payment.domains.enums.Type;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @With
 @Getter
 @Builder
@@ -19,7 +21,7 @@ public class Payment {
     private String hashId;
     private Gateway gateway;
     private Status status;
-    private Double amount;
+    private BigDecimal amount;
     private String userId;
 
 }

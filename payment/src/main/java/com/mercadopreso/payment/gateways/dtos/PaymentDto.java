@@ -4,30 +4,29 @@ import com.mercadopreso.payment.domains.enums.Gateway;
 import com.mercadopreso.payment.domains.enums.Type;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
+
+import java.math.BigDecimal;
 
 @Data
 public class PaymentDto {
 
-    @NotNull(message = "Tipo do pagamento é obrigatório, Tipos de pagamentos aceitos: CARTAO_CREDITO,CARTAO_DEBITO,PIX,BOLETO,TRANSFERENCIA,CARTEIRA_DIGITAL")
-    private Type type;
-
-    @NotBlank(message = "Usuário é obrigatório")
-    private String userId;
-
-    @NotNull(message = "Gateway é obrigatório, Tipos de gateways aceitos: STRIPE,MERCADO_PAGO,PAGSEGURO,PAYPAL,CIELO,REDE")
-    private Gateway gateway;
+    @NotBlank(message = "HashId é obrigatório")
+    @Pattern(
+            regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+            message = "O campo deve ser um UUID válido"
+    )
+    private String hashId;
 
     @NotNull(message = "Valor é obrigatório")
     @Positive(message = "Valor deve ser maior que zero")
-    private Double amount;
+    private BigDecimal amount;
 
     public Payment toPayment() {
         return Payment.builder()
-                .type(type)
-                .userId(userId)
-                .gateway(gateway)
+                .hashId(hashId)
                 .amount(amount)
                 .build();
     }
